@@ -38,7 +38,10 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (window.__POWERED_BY_QIANKUN__) {
-    if (!to.path.startsWith(prefix)) {
+    // 子应用之间跳转
+    if (to.fullPath.startsWith('/micro') && !to.path.startsWith(prefix)) {
+      location.href = location.origin + '#' + to.fullPath;
+    } else if (!to.path.startsWith(prefix)) {
       next({
         path: prefix + to.path
       })

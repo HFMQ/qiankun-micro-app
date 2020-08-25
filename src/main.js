@@ -37,6 +37,11 @@ export async function mount(props) {
       ...microModules
     }
   }
+  // 获取主应用传过来的组件
+  if (props.components) {
+    debugger;
+    Vue.use(props.components)
+  }
   render(props)
 }
 

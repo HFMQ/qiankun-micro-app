@@ -8,6 +8,11 @@
     <input v-model="username" type="text" placeholder="姓名" />
     <input v-model="password" type="password" placeholder="密码" />
     <input type="button" value="提交" @click="submit" />
+    <hr />
+    <!-- 主应用共享的公共前端自定义组件 -->
+    <Alers>
+      主应用共享的公共前端自定义组件 Alers
+    </Alers>
   </div>
 </template>
 <script>
@@ -19,18 +24,20 @@ export default {
     return {
       username: '',
       password: '',
+      editor: 'dasd',
     };
   },
   methods: {
     goRqr() {
       this.$router.push('/frqr/home');
     },
-    submit() {
+    async submit() {
       // 子改父
-      this.$store.dispatch('userStore/login', {
+      await this.$store.dispatch('userStore/login', {
         username: this.username,
         password: this.password,
       });
+      this.$router.push('/microFrqr/about');
     },
   },
 };
