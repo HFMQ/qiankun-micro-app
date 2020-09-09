@@ -16,6 +16,7 @@
   </div>
 </template>
 <script>
+import actions from '@/utils/actions.js';
 export default {
   mounted() {
     debugger;
@@ -37,7 +38,10 @@ export default {
         username: this.username,
         password: this.password,
       });
-      this.$router.push('/microFrqr/about');
+      // this.$router.push('/microFrqr/about');
+      actions.onGlobalStateChange((state) => {
+        debugger;
+      }, true);
     },
   },
 };

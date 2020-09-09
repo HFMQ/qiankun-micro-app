@@ -6,7 +6,7 @@ import {
   microModules
 } from './store/index.js'
 Vue.use(Vuex)
-
+import actions from '@/utils/actions'
 let instance = null;
 let mainStoreModules = {},
   allStoreModules = microModules;
@@ -19,6 +19,10 @@ export async function bootstrap(props) {}
 
 // 挂载应用
 export async function mount(props) {
+  if (props) {
+    // 注入 actions 实例
+    actions.setActions(props);
+  }
   console.log('hf', '挂载fdevapp应用 ing', props);
   props.onGlobalStateChange &&
     props.onGlobalStateChange(
@@ -39,8 +43,12 @@ export async function mount(props) {
   }
   // 获取主应用传过来的组件
   if (props.components) {
-    debugger;
     Vue.use(props.components)
+  }
+  if (props.utils) {
+    Object.keys(props.utils).forEach(fn => {
+      Vue.prototype[`$${fn}`] = fn;
+    })
   }
   render(props)
 }
