@@ -10,16 +10,10 @@ export default {
   data() {
     return {};
   },
-  components: {},
-  watch: {},
-  methods: {},
-  mounted() {},
-  created() {
-    console.log('hf', 'sad')
-
-    debugger;
-    console.log('hf', 'sad')
-  },
+  created(){
+    debugger
+    console.log('hf',123);
+  }
 };
 </script>
 
