@@ -16,6 +16,7 @@ export default {
   mounted() {},
   created() {
     debugger;
+    console.log('hf', 'sad')
   },
 };
 </script>
