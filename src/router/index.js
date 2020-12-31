@@ -38,10 +38,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (window.__POWERED_BY_QIANKUN__) {
-    // 子应用之间跳转
-    if (to.fullPath.startsWith('/micro') && !to.path.startsWith(prefix)) {
-      location.href = location.origin + '#' + to.fullPath;
-    } else if (!to.path.startsWith(prefix)) {
+    if (!to.path.startsWith(prefix)) {
       next({
         path: prefix + to.path
       })
@@ -51,6 +48,20 @@ router.beforeEach((to, from, next) => {
   } else {
     next()
   }
+  // if (window.__POWERED_BY_QIANKUN__) {
+  //   // 子应用之间跳转
+  //   if (to.fullPath.startsWith('/micro') && !to.path.startsWith(prefix)) {
+  //     location.href = location.origin + '#' + to.fullPath;
+  //   } else if (!to.path.startsWith(prefix)) {
+  //     next({
+  //       path: prefix + to.path
+  //     })
+  //   } else {
+  //     next()
+  //   }
+  // } else {
+  //   next()
+  // }
 })
 
 export default router

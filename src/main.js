@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import App from './App.vue'
 import router from './router'
+import './quasar'
 import {
   microModules
 } from './store/index.js'
