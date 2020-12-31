@@ -21,7 +21,7 @@
     "@vue/cli-plugin-router": "~4.4.0",
     "@vue/cli-plugin-vuex": "~4.4.0",
     "@vue/cli-service": "~4.4.0",
-    "@vue/eslint-config-prettier": "^6.0.0",
+    "@vue/eslint-config-prettier": "^6.0.0",,
     "babel-eslint": "^10.1.0",
     "babel-plugin-transform-imports": "1.5.0",
     "eslint": "^6.7.2",
@@ -34,5 +34,8 @@
     "stylus-loader": "^3.0.2",
     "vue-cli-plugin-quasar": "~2.0.2",
     "vue-template-compiler": "^2.6.11"
-  }
+  },
+  "pre-commit": [
+    "lint"
+  ]
 }
