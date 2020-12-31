@@ -1,22 +1,20 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import App from './App.vue'
-import router from './router'
-import './quasar'
-import {
-  microModules
-} from './store/index.js'
-Vue.use(Vuex)
-import actions from '@/utils/actions'
+import Vue from "vue";
+import Vuex from "vuex";
+import App from "./App.vue";
+import router from "./router";
+import "./quasar";
+import { microModules } from "./store/index.js";
+Vue.use(Vuex);
+import actions from "@/utils/actions";
 let instance = null;
 let mainStoreModules = {},
   allStoreModules = microModules;
 
 // 动态添加publicPath
 if (window.__POWERED_BY_QIANKUN__) {
-  __webpack_public_path__ = window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__;
+  // __webpack_public_path__ = window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__;
 }
-export async function bootstrap(props) {}
+export async function bootstrap() {}
 
 // 挂载应用
 export async function mount(props) {
@@ -24,11 +22,12 @@ export async function mount(props) {
     // 注入 actions 实例
     actions.setActions(props);
   }
-  console.log('hf', '挂载fdevapp应用 ing', props);
+  console.log("hf", "挂载fdevapp应用 ing", props);
   props.onGlobalStateChange &&
     props.onGlobalStateChange(
-      (value, prev) => console.log(`[onGlobalStateChange - ${props.store}]:`, value, prev),
-      true,
+      (value, prev) =>
+        console.log(`[onGlobalStateChange - ${props.store}]:`, value, prev),
+      true
     );
   props.setGlobalState &&
     props.setGlobalState({
@@ -36,41 +35,40 @@ export async function mount(props) {
     });
   // 获取主应用的vuex modules
   if (props.mainModules) {
-    mainStoreModules = props.mainModules
+    mainStoreModules = props.mainModules;
     allStoreModules = {
       ...mainStoreModules,
       ...microModules
-    }
+    };
   }
   // 获取主应用传过来的组件
   if (props.components) {
-    Vue.use(props.components)
+    Vue.use(props.components);
   }
   if (props.utils) {
     Object.keys(props.utils).forEach(fn => {
       Vue.prototype[`$${fn}`] = fn;
-    })
+    });
   }
-  render(props)
+  render(props);
 }
 
 // 没有父应用  独自开启运行子应用
 if (!window.__POWERED_BY_QIANKUN__) {
-  render()
+  render();
 }
 
-
-function render(props) {
+function render() {
   const store = new Vuex.Store({
     modules: allStoreModules
-  })
+  });
   instance = new Vue({
     router,
     store,
     render: h => h(App)
-  }).$mount('#app')
+  }).$mount("#app");
 }
-export async function unmount(props) {
+export async function unmount() {
   instance.$destroy();
-  console.log('hf', '销毁fdevrqr 应用');
+  console.log("hf", "销毁fdevrqr 应用");
 }

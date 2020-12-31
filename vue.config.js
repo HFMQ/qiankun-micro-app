@@ -1,28 +1,26 @@
-const packageName = require('./package.json').name;
+const packageName = require("./package.json").name;
 module.exports = {
   devServer: {
     port: 7300,
     headers: {
-      'Access-Control-Allow-Origin': '*'
+      "Access-Control-Allow-Origin": "*"
     }
   },
 
   configureWebpack: {
     output: {
       library: `microFapp`,
-      libraryTarget: 'umd',
-      jsonpFunction: `webpackJsonp_${packageName}`,
+      libraryTarget: "umd",
+      jsonpFunction: `webpackJsonp_${packageName}`
     }
   },
 
   pluginOptions: {
     quasar: {
-      importStrategy: 'kebab',
+      importStrategy: "kebab",
       rtlSupport: true
     }
   },
 
-  transpileDependencies: [
-    'quasar'
-  ]
+  transpileDependencies: ["quasar"]
 };

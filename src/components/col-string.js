@@ -1,21 +1,16 @@
-import Vue from 'vue';
+import Vue from "vue";
 
-Vue.component('col-string', {
+Vue.component("col-string", {
   props: {
     name: {
       type: String,
-      default: () => ''
+      default: () => ""
     }
   },
-  render: function (createElement){
-    return createElement(
-      'h' + this.name,
-      [
-        createElement('a', this.name)
-      ]
-    )
+  render: function(createElement) {
+    return createElement("h" + this.name, [createElement("a", this.name)]);
   }
-})
+});
 
 /* export default Vue.extend('col-string', {
   props: {

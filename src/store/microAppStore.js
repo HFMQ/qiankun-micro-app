@@ -1,18 +1,16 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default {
   namespaced: true,
   state: {
     app: {
-      name: 'hf'
+      name: "hf"
     }
   },
-  getters: {
-
-  },
+  getters: {},
   mutations: {
     saveApp(state, payload) {
       state.app = payload;
@@ -20,7 +18,7 @@ export default {
   },
   actions: {
     getApp(data) {
-      this.commit('saveApp', data);
+      this.commit("saveApp", data);
     }
   }
-}
+};

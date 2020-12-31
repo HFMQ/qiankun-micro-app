@@ -40,7 +40,7 @@ export default {
       });
       // this.$router.push('/microFrqr/about');
       actions.onGlobalStateChange((state) => {
-        debugger;
+        state.name = 'micro_app';
       }, true);
     },
   },
